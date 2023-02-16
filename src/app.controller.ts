@@ -1,9 +1,19 @@
-import { Body, Controller, Get, Post, Query, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Logger,
+  Post,
+  Query,
+  Res,
+} from '@nestjs/common';
 import { Response } from 'express';
 import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
+  private readonly logger = new Logger(AppController.name);
+
   constructor(private readonly appService: AppService) {}
 
   @Get()
@@ -45,7 +55,9 @@ export class AppController {
   }
 
   @Post('/submission')
-  pocODKSubmission(@Body() body: any) {
+  pocODKSubmission(@Body() body: { [K: string]: any }) {
+    console.log('serialized', JSON.stringify(body));
+    this.logger.log(body);
     console.log(body);
   }
 }
