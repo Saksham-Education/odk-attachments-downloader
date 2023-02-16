@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Res } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { AppService } from './app.service';
 
@@ -42,5 +42,10 @@ export class AppController {
     });
 
     return response.send(resp.data);
+  }
+
+  @Post('/submission')
+  pocODKSubmission(@Body() body: any) {
+    console.log(body);
   }
 }
