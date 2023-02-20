@@ -9,7 +9,7 @@ import { AppService } from './app.service';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    HttpModule
+    HttpModule,
   ],
   controllers: [AppController],
   providers: [AppService],
