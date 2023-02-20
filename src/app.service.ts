@@ -10,12 +10,12 @@ export class AppService {
   private readonly logger = new Logger(AppService.name);
 
   constructor(private readonly configService: ConfigService) {
-    const filePath = `${__dirname}/config.json`;
-    if (fs.existsSync(filePath)) {
-      this.configs = JSON.parse(fs.readFileSync(filePath).toString());
-      this.logger.log('config.json loaded!');
-    } else {
-      this.logger.error('No config.json exists');
+    try {
+      const credentials = configService.getOrThrow('ODK_CREDENTIALS');
+      this.configs = JSON.parse(credentials);
+      this.logger.log('ODK_CREDENTIALS loaded successfully');
+    } catch (error) {
+      this.logger.error(`Error in ODK_CREDENTIALS: ${error}`);
       process.exit(1);
     }
   }

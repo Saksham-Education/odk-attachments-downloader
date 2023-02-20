@@ -19,14 +19,14 @@ export class AppController {
 
   @Get()
   async preview(@Query() queryParams: PreviewDto, @Res() response: Response) {
-    const config = this.appService.getODkCredentials(queryParams.configId);
+    const credential = this.appService.getODkCredentials(queryParams.configId);
     let resp: { status: number; data: string } | null = null;
 
-    if (config.odkType === 'aggregate') {
+    if (credential.type === 'aggregate') {
       resp = await this.appService.getODKAggregateBinaryData(
         queryParams.url,
-        config.odkUsername,
-        config.odkPassword,
+        credential.username,
+        credential.password,
       );
     }
 

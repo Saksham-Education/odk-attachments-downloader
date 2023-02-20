@@ -1,6 +1,6 @@
 export interface ODKCredential {
-  odkURL: string;
-  odkUsername: string;
-  odkPassword: string;
-  odkType: 'aggregate' | 'central';
+  url: string;
+  username: string;
+  password: string;
+  type: 'aggregate' | 'central';
 }
